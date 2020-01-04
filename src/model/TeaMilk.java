@@ -1,22 +1,32 @@
 package model;
 
-public class TraSua  {
+public class TeaMilk {
  private int id;
  private String nameTraSua;
  private double price;
  private int qty;
+ private String size;
 
-    public  TraSua(){}
 
-    public TraSua(int id,String nameTraSua,double price, int qty)
+    public TeaMilk(){}
+
+    public TeaMilk(int id, String nameTraSua, double price, int qty, String size)
     {
         this.id = id;
         this.nameTraSua = nameTraSua;
         this.price = price;
         this.qty = qty;
+        this.size =size;
 
     }
 
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
 
     public int getId() {
         return id;

@@ -4,9 +4,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-public class TraSuaDaoImpl implements TraSuaDao {
+public class TeaMilkDaoImpl implements TeaMilkDao {
 
-    public TraSuaDaoImpl() {
+    public TeaMilkDaoImpl() {
         Database db = new Database();
         String SQL_CREATE_TRASUA_TABLE = "CREATE TABLE IF NOT EXISTS tbl_TraSua (\n"
                 + "    ID integer PRIMARY KEY,\n"
@@ -19,8 +19,8 @@ public class TraSuaDaoImpl implements TraSuaDao {
         String SQL_CREATE_TOPPING_TABLE = "CREATE TABLE IF NOT EXISTS tbl_TopPing (\n"
                 + "    ID_topping integer PRIMARY KEY,\n"
                 + "    name text NOT NULL,\n"
-                + "    price money NOT NULL,\n"
-                + "    quality integer NOT NULL \n"
+                + "    size text  NOT NULL,\n"
+                + "    price money NOT NULL\n"
                 + ");";
 
 
@@ -46,6 +46,7 @@ public class TraSuaDaoImpl implements TraSuaDao {
             statement.execute(SQL_CREATE_TRASUA_TABLE);
             statement.execute(SQL_CREATE_TOPPING_TABLE);
             statement.execute(SQL_CREATE_HOADON_TABLE);
+            statement.execute(SQL_CREATE_DETAIL_TABLE);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -53,27 +54,27 @@ public class TraSuaDaoImpl implements TraSuaDao {
 
 
     @Override
-    public void insertTrSua(TraSua traSua) {
+    public void insertTraSua(TeaMilk teaMilk) {
 
     }
 
     @Override
-    public TraSua getTraSuaById(int id) {
+    public TeaMilk getTraSuaById(int id) {
         return null;
     }
 
     @Override
-    public List<TraSua> getAllTraSua() {
+    public List<TeaMilk> getAllTraSua() {
         return null;
     }
 
     @Override
-    public void updateEmployee(TraSua traSua) {
+    public void updateEmployee(TeaMilk teaMilk) {
 
     }
 
     @Override
-    public void deleteEmloyee(TraSua id) {
+    public void deleteEmloyee(TeaMilk id) {
 
     }
 }

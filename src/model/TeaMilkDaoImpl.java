@@ -12,23 +12,18 @@ public class TeaMilkDaoImpl implements TeaMilkDao {
                 + "    ID integer PRIMARY KEY,\n"
                 + "    name text NOT NULL,\n"
                 + "    price money NOT NULL,\n"
-                + "    size text  NOT NULL,\n"
-                + "    quality integer NOT NULL \n"
                 + ");";
 
         String SQL_CREATE_TOPPING_TABLE = "CREATE TABLE IF NOT EXISTS tbl_TopPing (\n"
                 + "    ID_topping integer PRIMARY KEY,\n"
                 + "    name text NOT NULL,\n"
-                + "    size text  NOT NULL,\n"
                 + "    price money NOT NULL\n"
                 + ");";
 
 
         String SQL_CREATE_HOADON_TABLE = "CREATE TABLE IF NOT EXISTS tbl_HOADON (\n"
                 + "    id_hoadon  integer PRIMARY KEY,\n"
-                + "    ID integer ,\n"
-                + "    nameTraSua text NOT NULL,\n"
-                + "    size text NOT NULL,\n"
+                + "    ID_TeaMilk integer ,\n"
                 + "    price money NOT NULL,\n"
                 + "    qty integer NOT NULL, \n"
                 + "    total money NOT NULL, \n"

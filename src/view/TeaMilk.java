@@ -2,6 +2,6 @@ package view;
 
 import javax.swing.*;
 
-public class TraSua {
+public class TeaMilk {
     private JPanel rootPanel;
 }

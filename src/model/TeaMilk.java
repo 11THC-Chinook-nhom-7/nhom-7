@@ -4,28 +4,15 @@ public class TeaMilk {
  private int id;
  private String nameTraSua;
  private double price;
- private int qty;
- private String size;
 
 
     public TeaMilk(){}
 
-    public TeaMilk(int id, String nameTraSua, double price, int qty, String size)
+    public TeaMilk(int id, String nameTraSua, double price)
     {
         this.id = id;
         this.nameTraSua = nameTraSua;
         this.price = price;
-        this.qty = qty;
-        this.size =size;
-
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
     }
 
     public int getId() {
@@ -50,13 +37,5 @@ public class TeaMilk {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
     }
 }

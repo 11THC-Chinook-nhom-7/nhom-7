@@ -2,25 +2,15 @@ package model;
 
 public class TopPing {
     private int ID_topping;
-    private  String name;
+    private String name;
     private double price;
-    private String size;
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
 
     public TopPing(){}
 
-    public TopPing(int ID_topping, String name, double price,String size) {
+    public TopPing(int ID_topping, String name, double price) {
         this.ID_topping = ID_topping;
         this.name = name;
         this.price = price;
-        this.size = size;
     }
 
     public int getID_topping() {

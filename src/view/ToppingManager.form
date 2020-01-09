@@ -47,9 +47,12 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="e3600" class="javax.swing.JTable" binding="table1" default-binding="true">
+              <component id="e3600" class="javax.swing.JTable" binding="table_TopPing">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <showHorizontalLines value="false"/>
+                  <showVerticalLines value="false"/>
+                </properties>
               </component>
             </children>
           </scrollpane>

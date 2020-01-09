@@ -10,5 +10,5 @@ public interface ToppingDao {
     //Update
     void updateTopping(TopPing topPing);
     //Delete
-    void deleteTopping(TopPing id);
+    void deleteTopping(int id);
 }

@@ -47,4 +47,9 @@ public class Creamer extends TraSuaDecorator {
     public String size() {
         return creaSize;
     }
+
+    @Override
+    public String getName() {
+        return trasua.getName() + ToppingName;
+    }
 }

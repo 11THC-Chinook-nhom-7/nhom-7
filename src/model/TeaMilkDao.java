@@ -4,14 +4,14 @@ import java.util.List;
 
 public interface TeaMilkDao {
 
-void insertTraSua(TeaMilk teaMilk);
+void insertTeaMilk(TeaMilk teaMilk);
     TeaMilk getTraSuaById(int id);
     // Read
     List<TeaMilk> getAllTraSua();
 
     //Update
-    void updateEmployee(TeaMilk teaMilk);
+    void updateTeaMilk(TeaMilk teaMilk);
     //Delete
-    void deleteEmloyee(TeaMilk id);
+    void deleteTeaMilk(int id);
 
 }

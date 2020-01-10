@@ -22,6 +22,7 @@ public class ToppingManager extends JFrame implements TableObserverTopPing {
     private JButton deleteButton;
     private JPanel rootPanelTopping;
     private JScrollPane tbl_Topping;
+    private JButton cancelButton;
     private TopPingTableModel topPingTableModel;
     private TopPingModel model;
     int idSelect = -1;
@@ -78,6 +79,15 @@ public class ToppingManager extends JFrame implements TableObserverTopPing {
                 }
             }
         });
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TeaMilkModel model = new TeaMilkModelImlp();
+                TeaMilkView teaMilkView = new TeaMilkView(model);
+                ToppingManager.this.dispose();
+
+            }
+        });
     }
 
    private void onAddTopPing(){
@@ -104,7 +114,6 @@ public class ToppingManager extends JFrame implements TableObserverTopPing {
         EditTopPingController controller = new EditTopPingControllerImpl(this,model,new EditTopPing());
         controller.EditTopPing(topPing);
     }
-
 
     @Override
     public void updateTableTopPing(List<TopPing> topPings) {

@@ -21,6 +21,7 @@ public class ProductManager extends JFrame implements TableObserver {
     private JButton addButton;
     private JButton updateButton;
     private JButton deleteButton;
+    private JButton cancelButton;
     private JScrollPane tbl_Product;
     private TeaMilkTableModel teaMilkTableModel;
     private TeaMilkModel model;

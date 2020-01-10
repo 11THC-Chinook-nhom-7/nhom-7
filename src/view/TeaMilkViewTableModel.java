@@ -3,18 +3,15 @@ package view;
 import model.TeaMilk;
 
 import javax.swing.table.AbstractTableModel;
-import java.awt.*;
 import java.util.List;
 import java.util.Vector;
 
-public class TeaMilkTableModel extends AbstractTableModel {
+public class TeaMilkViewTableModel extends AbstractTableModel {
 
     private List<TeaMilk> teaMilks = new Vector<>();
-
-    private static final String[] COLUMS_NAME = {"ID", "NAME", "Price"};
-    private static final int ID = 0;
-    private static final int NAME = 1;
-    private static final int PRICE = 2;
+    private static final String[] COLUMS_NAME = {"NAME", "Price"};
+    private static final int NAME = 0;
+    private static final int PRICE = 1;
 
 
     @Override
@@ -35,13 +32,11 @@ public class TeaMilkTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         TeaMilk teaMilk = teaMilks.get(rowIndex);
-    if(columnIndex == ID) {
-        return teaMilk.getId();
-    } else if(columnIndex == NAME) {
-        return teaMilk.getNameTraSua();
-    } else if(columnIndex == PRICE) {
-        return  teaMilk.getPrice();
-    }
+          if(columnIndex == NAME) {
+            return teaMilk.getNameTraSua();
+        } else if(columnIndex == PRICE) {
+            return  teaMilk.getPrice();
+        }
         return null;
     }
 
@@ -50,6 +45,8 @@ public class TeaMilkTableModel extends AbstractTableModel {
         this.teaMilks.addAll(teaMilks);
         fireTableDataChanged();
     }
+
+
 
 
 }

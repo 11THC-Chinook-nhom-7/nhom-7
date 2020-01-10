@@ -2,14 +2,16 @@ package view;
 
 import controller.NewTeaMilkController;
 import controller.NewTeaMilkControllerImpl;
-import model.TableObserver;
-import model.TeaMilk;
-import model.TeaMilkModel;
+import controller.QtyViewController;
+import controller.QtyViewControllerIplm;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class TeaMilkView extends JFrame implements TableObserver {
@@ -20,6 +22,7 @@ public class TeaMilkView extends JFrame implements TableObserver {
     private JButton btnManager;
     private TeaMilkTableModel teaMilkTableModel;
     private TeaMilkModel model;
+    private OrderModel orderModel;
 
     public TeaMilkView(TeaMilkModel model){
         this.model = model;
@@ -42,10 +45,33 @@ public class TeaMilkView extends JFrame implements TableObserver {
                 TeaMilkView.this.dispose();
             }
         });
+        table_TeaMlikView.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int rowIndex = table_TeaMlikView.getSelectedRow();
+                    TeaMilk teaMilk = new TeaMilk();
+                    teaMilk.setId(Integer.parseInt(teaMilkTableModel.getValueAt(rowIndex,0).toString()));
+                    teaMilk.setNameTraSua(teaMilkTableModel.getValueAt(rowIndex,1).toString());
+                    teaMilk.setPrice(Double.parseDouble(teaMilkTableModel.getValueAt(rowIndex,2).toString()));
+                    SelectTeaMilk(teaMilk, orderModel);
+                }
+            }
+        });
+
     }
 
     @Override
     public void updateTable(List<TeaMilk> teaMilks) {
         teaMilkTableModel.updateTeaMilks(teaMilks);
+    }
+
+    private void SelectTeaMilk(TeaMilk teaMilk, OrderModel model1){
+        QtyViewController controller = new QtyViewControllerIplm(this,model1,new QtyTeaMilk());
+        controller.newOrder(teaMilk);
+    }
+
+    public void SetOrderModel(OrderModel model){
+        this.orderModel = model;
     }
 }

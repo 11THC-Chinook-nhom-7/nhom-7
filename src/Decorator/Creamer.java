@@ -8,11 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Creamer extends TraSuaDecorator {
-    String creaSize="";
-    final  String ToppingName = "Creamer";
-    protected Creamer(CompomentTraSua trasua, String creamSize) {
+
+    String ToppingName = "Creamer";
+    protected Creamer(CompomentTraSua trasua, String ToppingName) {
         super(trasua);
-        this.creaSize = creamSize;
+        this.ToppingName = ToppingName;
     }
 
     @Override
@@ -24,13 +24,11 @@ public class Creamer extends TraSuaDecorator {
     public double price() {
         Database db = new Database();
         double price = 0;
-        final String SQL_SelectPrice_EMPLOYEE = "Select * from tbl_TopPing Where name=? AND size=? ";
+        final String SQL_SelectPrice_EMPLOYEE = "Select * from tbl_TopPing Where name=?  ";
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(SQL_SelectPrice_EMPLOYEE, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, ToppingName);
-            ps.setString(2, creaSize);
             ps.executeUpdate();
-
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 price = rs.getDouble(4);
@@ -43,10 +41,6 @@ public class Creamer extends TraSuaDecorator {
         return price;
     }
 
-    @Override
-    public String size() {
-        return creaSize;
-    }
 
     @Override
     public String getName() {

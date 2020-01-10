@@ -38,7 +38,6 @@ public class Manager extends JFrame {
                 TopPingModel model  = new TopPingModelImpl();
                 ToppingManager toppingManager = new ToppingManager(model);
                 Manager.this.dispose();
-
             }
         });
     }

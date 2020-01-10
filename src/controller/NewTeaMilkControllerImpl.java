@@ -14,7 +14,7 @@ public class NewTeaMilkControllerImpl implements NewTeaMilkController {
     private TeaMilkModel model;
     private NewTeaMilk view;
 
-    public NewTeaMilkControllerImpl(ProductManager parent, TeaMilkModel model, NewTeaMilk view) {
+    public NewTeaMilkControllerImpl(Component parent, TeaMilkModel model, NewTeaMilk view) {
             this.parent = parent;
             this.model = model;
             this.view = view;

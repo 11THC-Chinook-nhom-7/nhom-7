@@ -7,5 +7,4 @@ public interface CompomentTraSua {
 
     double price();
 
-    String size();
 }

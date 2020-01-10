@@ -35,13 +35,13 @@ public class TeaMilkTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         TeaMilk teaMilk = teaMilks.get(rowIndex);
-    if(columnIndex == ID) {
-        return teaMilk.getId();
-    } else if(columnIndex == NAME) {
-        return teaMilk.getNameTraSua();
-    } else if(columnIndex == PRICE) {
-        return  teaMilk.getPrice();
-    }
+        if (columnIndex == 0) {
+            return teaMilk.getId();
+        } else if (columnIndex == 1) {
+            return teaMilk.getNameTraSua();
+        } else if (columnIndex == 2) {
+            return teaMilk.getPrice();
+        }
         return null;
     }
 
@@ -50,6 +50,4 @@ public class TeaMilkTableModel extends AbstractTableModel {
         this.teaMilks.addAll(teaMilks);
         fireTableDataChanged();
     }
-
-
 }

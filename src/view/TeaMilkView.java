@@ -1,5 +1,6 @@
 package view;
 
+import Decorator.Beverage;
 import controller.NewTeaMilkController;
 import controller.NewTeaMilkControllerImpl;
 import controller.QtyViewController;
@@ -23,6 +24,7 @@ public class TeaMilkView extends JFrame implements TableObserver {
     private TeaMilkTableModel teaMilkTableModel;
     private TeaMilkModel model;
     private OrderModel orderModel;
+
 
     public TeaMilkView(TeaMilkModel model){
         this.model = model;
@@ -54,6 +56,7 @@ public class TeaMilkView extends JFrame implements TableObserver {
                     teaMilk.setId(Integer.parseInt(teaMilkTableModel.getValueAt(rowIndex,0).toString()));
                     teaMilk.setNameTraSua(teaMilkTableModel.getValueAt(rowIndex,1).toString());
                     teaMilk.setPrice(Double.parseDouble(teaMilkTableModel.getValueAt(rowIndex,2).toString()));
+                    Beverage beverage = new TeaMilk(teaMilk.getId(),teaMilk.getNameTraSua(),teaMilk.getPrice());
                     SelectTeaMilk(teaMilk, orderModel);
                 }
             }

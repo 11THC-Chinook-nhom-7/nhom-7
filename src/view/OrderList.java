@@ -1,9 +1,7 @@
 package view;
 
-import controller.NewTeaMilkController;
-import controller.NewTeaMilkControllerImpl;
-import controller.NewToppingController;
-import controller.NewToppingControllerImpl;
+import Decorator.Beverage;
+import controller.*;
 import model.*;
 
 import javax.swing.*;
@@ -39,7 +37,8 @@ public class OrderList extends JFrame implements TableObserverNewOrder {
         btnNewOrder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                onAddNewOrder();
+                Beverage beverage = null;
+                onAddNewOrder(beverage);
             }
         });
 
@@ -61,6 +60,22 @@ public class OrderList extends JFrame implements TableObserverNewOrder {
                 }
             }
         });
+
+tbOrderList.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() == 2) {
+            int rowIndex = tbOrderList.getSelectedRow();
+            id_Order =Integer.parseInt(orderTableModel.getValueAt(rowIndex,0).toString());
+            int id_TeaMilk = Integer.parseInt(orderTableModel.getValueAt(rowIndex,1).toString());
+            TeaMilkModel teaMilkModel= new TeaMilkModelImlp();
+            TeaMilk teaMilk = teaMilkModel.getTeaMilkbyId(id_TeaMilk);
+            //Beverage beverage = new TeaMilk(teaMilk.getId(),teaMilk.getNameTraSua(),teaMilk.getPrice());
+            doubleTable(id_Order,teaMilk);
+
+        }
+    }
+});
     }
 
     public JTable getTbOrderList() {
@@ -80,7 +95,7 @@ public class OrderList extends JFrame implements TableObserverNewOrder {
         orderTableModel.updateOrder(orders);
     }
 
-    private void onAddNewOrder(){
+    private void onAddNewOrder(Beverage beverage){
         TeaMilkModel model = new TeaMilkModelImlp();
         TeaMilkView teaMilkView = new TeaMilkView(model);
         teaMilkView.SetOrderModel(orderModel);
@@ -88,5 +103,12 @@ public class OrderList extends JFrame implements TableObserverNewOrder {
 
     private void deleteOrder(int id_Order){
         orderModel.deleteOrder(id_Order);
+    }
+
+    private void doubleTable(int ID_Order, TeaMilk teaMilk){
+        OrderDetailModel model = new OrderDetailModelIplm();
+        TopPingModel topPingModel = new TopPingModelImpl();
+        OrderViewController controller = new OrderViewControllerImpl(this,model,topPingModel,new OrderView(topPingModel,model,ID_Order));
+        controller.newOrderDetailsShow(ID_Order, teaMilk);
     }
 }

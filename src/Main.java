@@ -17,7 +17,7 @@ public class Main {
         //TopPingController controller = new TopPingControllerImpl(model);
         //TeaMilkView teaMilkView = new TeaMilkView(model);
 
-        JFrame frame = new OrderView(new TopPingModelImpl());
+        //JFrame frame = new OrderView(new TopPingModelImpl());
 
         JFrame frame1 = new OrderList(new OrderModelIplm());
     }

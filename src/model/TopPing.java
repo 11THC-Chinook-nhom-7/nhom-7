@@ -1,6 +1,10 @@
 package model;
 
-public class TopPing {
+import Decorator.Beverage;
+import Decorator.ToppingCodiment;
+
+public class TopPing extends ToppingCodiment {
+    Beverage beverage;
     private int ID_topping;
     private String name;
     private double price;
@@ -11,6 +15,22 @@ public class TopPing {
         this.ID_topping = ID_topping;
         this.name = name;
         this.price = price;
+    }
+    public TopPing(Beverage beverage,int ID_topping, String name, double price){
+        this.ID_topping = ID_topping;
+        this.name = name;
+        this.price = price;
+        this.beverage = beverage;
+    }
+
+    public TopPing(TopPing topPing){
+        this.ID_topping = topPing.getID_topping();
+        this.name = topPing.getName();
+        this.price = topPing.getPrice();
+    }
+
+    public void setBeverage(Beverage beverage) {
+        this.beverage = beverage;
     }
 
     public int getID_topping() {
@@ -35,5 +55,15 @@ public class TopPing {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String getDescription() {
+        return beverage.getDescription() + getName();
+    }
+
+    @Override
+    public double cost() {
+        return price + beverage.cost();
     }
 }

@@ -17,8 +17,8 @@ public class ToppingDaoImpl implements ToppingDao {
                 "VALUES(?,?)";
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(SQL_CREATE_TOPPING, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1,topPing.getName());
-            ps.setDouble(2,topPing.getPrice());
+            ps.setString(1, topPing.getName());
+            ps.setDouble(2, topPing.getPrice());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -36,7 +36,25 @@ public class ToppingDaoImpl implements ToppingDao {
 
     @Override
     public TopPing getTopPingById(int id) {
-        return null;
+        Database db = new Database();
+        final String SQL_Select_TOPPING = "SELECT * from tbl_TopPing WHERE ID_topping = ?";
+        TopPing topPing = new TopPing();
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(SQL_Select_TOPPING, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                topPing.setID_topping(rs.getInt(1));
+                topPing.setName(rs.getString(2));
+                topPing.setPrice(rs.getDouble(3));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        db.close();
+        return topPing;
     }
 
     @Override
@@ -48,17 +66,14 @@ public class ToppingDaoImpl implements ToppingDao {
         try {
             Statement statement = db.getConnection().createStatement();
             ResultSet rs = statement.executeQuery(SQL_GETALLTOPPING);
-            while (rs.next())
-            {
+            while (rs.next()) {
                 int id = rs.getInt(1);
                 String Name = rs.getString(2);
                 double Price = rs.getDouble(3);
-                TopPing topPing = new TopPing(id,Name,Price);
+                TopPing topPing = new TopPing(id, Name, Price);
                 topPings.add(topPing);
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         db.close();
@@ -68,15 +83,14 @@ public class ToppingDaoImpl implements ToppingDao {
     @Override
     public void updateTopping(TopPing topPing) {
         Database db = new Database();
-        final  String SQL_UPDATE_TOPPING = "UPDATE tbl_TopPing SET name = ? , price = ? WHERE ID_topping = ?";
-        try{
-            PreparedStatement ps = db.getConnection().prepareStatement(SQL_UPDATE_TOPPING,Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1,topPing.getName());
-            ps.setDouble(2,topPing.getPrice());
-            ps.setInt(3,topPing.getID_topping());
+        final String SQL_UPDATE_TOPPING = "UPDATE tbl_TopPing SET name = ? , price = ? WHERE ID_topping = ?";
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(SQL_UPDATE_TOPPING, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, topPing.getName());
+            ps.setDouble(2, topPing.getPrice());
+            ps.setInt(3, topPing.getID_topping());
             ps.executeUpdate();
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         db.close();
@@ -88,10 +102,9 @@ public class ToppingDaoImpl implements ToppingDao {
         String SQL_DELETE_TOPPING = "DELETE FROM tbl_TopPing WHERE ID_topping = ?";
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(SQL_DELETE_TOPPING);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ps.executeUpdate();
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         db.close();

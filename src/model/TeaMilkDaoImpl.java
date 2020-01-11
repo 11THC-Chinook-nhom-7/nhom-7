@@ -79,7 +79,24 @@ public class TeaMilkDaoImpl implements TeaMilkDao {
 
     @Override
     public TeaMilk getTraSuaById(int id) {
-        return null;
+        Database db = new Database();
+        TeaMilk teaMilk = new TeaMilk();
+        final String SQL_Select_TEAMILK = "Select * from tbl_TraSua Where ID = ?";
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(SQL_Select_TEAMILK, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                teaMilk.setId(rs.getInt(1));
+                teaMilk.setNameTraSua(rs.getString(2));
+                teaMilk.setPrice(rs.getDouble(3));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        db.close();
+        return teaMilk;
     }
 
     @Override

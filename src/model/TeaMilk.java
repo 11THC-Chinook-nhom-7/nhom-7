@@ -1,12 +1,15 @@
 package model;
 
-public class TeaMilk {
+import Decorator.Beverage;
+
+public class TeaMilk extends Beverage {
  private int id;
  private String nameTraSua;
  private double price;
 
 
-    public TeaMilk(){}
+    public TeaMilk(){
+    }
 
     public TeaMilk(int id, String nameTraSua, double price)
     {
@@ -37,5 +40,15 @@ public class TeaMilk {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public double cost() {
+        return getPrice();
+    }
+
+    @Override
+    public String getDescription() {
+        return getNameTraSua();
     }
 }

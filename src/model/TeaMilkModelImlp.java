@@ -34,6 +34,12 @@ private List<TableObserver> tableObservers = new Vector<>();
     }
 
     @Override
+    public TeaMilk getTeaMilkbyId(int id) {
+        TeaMilkDao dao = new TeaMilkDaoImpl();
+        return dao.getTraSuaById(id);
+    }
+
+    @Override
     public void updateTeaMilk(TeaMilk teaMilk) {
         TeaMilkDao dao = new TeaMilkDaoImpl();
         dao.updateTeaMilk(teaMilk);

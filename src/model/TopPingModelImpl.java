@@ -27,6 +27,12 @@ public class TopPingModelImpl implements TopPingModel {
     }
 
     @Override
+    public TopPing getToppingById(int id) {
+        ToppingDao dao = new ToppingDaoImpl();
+        return dao.getTopPingById(id);
+    }
+
+    @Override
     public void registerObserver(TableObserverTopPing observer) {
       if(!tableObserverTopPings.contains(observer));
         tableObserverTopPings.add(observer);

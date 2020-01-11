@@ -8,11 +8,10 @@ import controller.QtyViewControllerIplm;
 import model.*;
 
 import javax.swing.*;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.List;
 
 public class TeaMilkView extends JFrame implements TableObserver {
@@ -62,6 +61,21 @@ public class TeaMilkView extends JFrame implements TableObserver {
             }
         });
 
+        txtSearch.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                TableRowSorter<TableModel>rowSorter = new TableRowSorter<>(table_TeaMlikView.getModel());
+                String text = txtSearch.getText();
+                if(text.trim().length()==0)
+                {
+                    rowSorter.setRowFilter(null);
+                }
+                else{
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)"+text));
+                }
+                table_TeaMlikView.setRowSorter(rowSorter);
+            }
+        });
     }
 
     @Override
